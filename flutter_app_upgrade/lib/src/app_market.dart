@@ -50,10 +50,20 @@ class AppMarket {
       zte,
       qiHoo,
       tencent,
+      coolApk,
       pp,
       wanDouJia
     ];
   }
+
+  ///
+  /// 酷安
+  ///
+  static final coolApk = AppMarketInfo(
+    'cookApk',
+    'com.coolapk.market',
+    'com.coolapk.market.view.main.MainActivity',
+  );
 
   ///
   /// 小米
