@@ -49,7 +49,7 @@ class AppUpgrade {
   ///
   static appUpgrade(
     BuildContext context,
-    Future<AppUpgradeInfo> future, {
+    Future<AppUpgradeInfo?> future, {
     required String iosAppId,
     required AppMarketInfo appMarketInfo,
     TextStyle? titleStyle,
@@ -66,7 +66,7 @@ class AppUpgrade {
     DownloadProgressCallback? downloadProgress,
     DownloadStatusChangeCallback? downloadStatusChange,
   }) {
-    future.then((AppUpgradeInfo appUpgradeInfo) {
+    future.then((AppUpgradeInfo? appUpgradeInfo) {
       if (appUpgradeInfo != null && appUpgradeInfo.title != null) {
         _showUpgradeDialog(
             context, appUpgradeInfo.title, appUpgradeInfo.contents,
@@ -131,37 +131,39 @@ class AppUpgrade {
                     borderRadius:
                         BorderRadius.all(Radius.circular(borderRadius))),
                 child: SimpleAppUpgradeWidget(
-                  title: title,
-                  titleStyle: titleStyle,
-                  contents: contents,
-                  contentStyle: contentStyle,
-                  cancelText: cancelText,
-                  cancelTextStyle: cancelTextStyle,
-                  okText: okText,
-                  okTextStyle: okTextStyle,
-                  okBackgroundColors: okBackgroundColors ??
-                      [
-                        Theme.of(context).primaryColor,
-                        Theme.of(context).primaryColor
-                      ],
-                  progressBarColor: progressBarColor,
-                  borderRadius: borderRadius,
-                  downloadUrl: apkDownloadUrl,
-                  force: force,
-                  iosAppId: iosAppId,
-                  appMarketInfo: appMarketInfo,
+                    title: title,
+                    titleStyle: titleStyle,
+                    contents: contents,
+                    contentStyle: contentStyle,
+                    cancelText: cancelText,
+                    cancelTextStyle: cancelTextStyle,
+                    okText: okText,
+                    okTextStyle: okTextStyle,
+                    okBackgroundColors: okBackgroundColors ??
+                        [
+                          Theme.of(context).primaryColor,
+                          Theme.of(context).primaryColor
+                        ],
+                    progressBarColor: progressBarColor,
+                    borderRadius: borderRadius,
+                    downloadUrl: apkDownloadUrl,
+                    force: force,
+                    iosAppId: iosAppId,
+                    appMarketInfo: appMarketInfo,
                     onCancel: onCancel,
                     onOk: onOk,
                     downloadProgress: downloadProgress,
-                    downloadStatusChange: downloadStatusChange
-                )),
+                    downloadStatusChange: downloadStatusChange)),
           );
         });
   }
 }
 
 class AppInfo {
-  AppInfo({required this.versionName, required this.versionCode, required this.packageName});
+  AppInfo(
+      {required this.versionName,
+      required this.versionCode,
+      required this.packageName});
 
   String versionName;
   String versionCode;
@@ -169,12 +171,21 @@ class AppInfo {
 }
 
 class AppUpgradeInfo {
-  AppUpgradeInfo(
-      {required this.title,
-      required this.contents,
-      this.apkDownloadUrl,
-      this.force = false,
-      });
+  AppUpgradeInfo({
+    required this.title,
+    required this.contents,
+    this.apkDownloadUrl,
+    this.force = false,
+  });
+
+  factory AppUpgradeInfo.fromJson(Map<String, dynamic> json) {
+    return AppUpgradeInfo(
+      title: json['title'],
+      contents: json['contents'],
+      apkDownloadUrl: json['apkDownloadUrl'],
+      force: json['force'],
+    );
+  }
 
   ///
   /// title,显示在提示框顶部
