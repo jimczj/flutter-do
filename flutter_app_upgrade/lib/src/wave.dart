@@ -8,10 +8,10 @@ class Wave extends StatefulWidget {
   final Axis direction;
 
   const Wave({
-    Key key,
-    @required this.value,
-    @required this.color,
-    @required this.direction,
+    Key? key,
+    required this.value,
+    required this.color,
+    required this.direction,
   }) : super(key: key);
 
   @override
@@ -19,7 +19,7 @@ class Wave extends StatefulWidget {
 }
 
 class _WaveState extends State<Wave> with SingleTickerProviderStateMixin {
-  AnimationController _animationController;
+  late AnimationController _animationController;
 
   @override
   void initState() {
@@ -65,9 +65,9 @@ class _WaveClipper extends CustomClipper<Path> {
   final Axis direction;
 
   _WaveClipper({
-    @required this.animationValue,
-    @required this.value,
-    @required this.direction,
+    required this.animationValue,
+    required this.value,
+    required this.direction,
   });
 
   @override
