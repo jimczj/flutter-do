@@ -51,7 +51,7 @@ class AppUpgrade {
     BuildContext context,
     Future<AppUpgradeInfo?> future, {
     required String iosAppId,
-    required AppMarketInfo appMarketInfo,
+    AppMarketInfo? appMarketInfo,
     TextStyle? titleStyle,
     TextStyle? contentStyle,
     String? cancelText,
@@ -101,7 +101,7 @@ class AppUpgrade {
     String title,
     List<String> contents, {
     required String iosAppId,
-    required AppMarketInfo appMarketInfo,
+    AppMarketInfo? appMarketInfo,
     String? apkDownloadUrl,
     bool force = false,
     TextStyle? titleStyle,

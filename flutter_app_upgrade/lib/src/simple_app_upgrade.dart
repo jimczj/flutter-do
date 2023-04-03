@@ -15,7 +15,7 @@ class SimpleAppUpgradeWidget extends StatefulWidget {
       {required this.title,
       required this.contents,
       required this.iosAppId,
-      required this.appMarketInfo,
+      this.appMarketInfo,
       this.titleStyle,
       this.contentStyle,
       this.cancelText,
@@ -113,7 +113,7 @@ class SimpleAppUpgradeWidget extends StatefulWidget {
   /// 指定跳转的应用市场，
   /// 如果不指定将会弹出提示框，让用户选择哪一个应用市场。
   ///
-  final AppMarketInfo appMarketInfo;
+  final AppMarketInfo? appMarketInfo;
 
   final VoidCallback? onCancel;
   final VoidCallback? onOk;
