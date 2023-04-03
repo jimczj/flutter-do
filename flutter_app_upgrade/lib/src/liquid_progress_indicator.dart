@@ -3,13 +3,13 @@ import 'package:flutter_app_upgrade/src/wave.dart';
 
 class LiquidLinearProgressIndicator extends ProgressIndicator {
   ///The width of the border, if this is set [borderColor] must also be set.
-  final double? borderWidth;
+  final double borderWidth;
 
   ///The color of the border, if this is set [borderWidth] must also be set.
-  final Color? borderColor;
+  final Color borderColor;
 
   ///The radius of the border.
-  final double? borderRadius;
+  final double borderRadius;
 
   ///The widget to show in the center of the progress indicator.
   final Widget? center;
@@ -21,9 +21,9 @@ class LiquidLinearProgressIndicator extends ProgressIndicator {
     Key? key,
     required Animation<Color> valueColor,
     Color? backgroundColor,
-    this.borderWidth,
-    this.borderColor,
-    this.borderRadius,
+    required this.borderWidth,
+    required this.borderColor,
+    required this.borderRadius,
     this.center,
     double value = 0.5,
     this.direction = Axis.horizontal,
@@ -63,9 +63,9 @@ class _LiquidLinearProgressIndicatorState
           radius: widget.borderRadius!,
         ),
         foregroundPainter: _LinearBorderPainter(
-          color: widget.borderColor!,
-          width: widget.borderWidth!,
-          radius: widget.borderRadius!,
+          color: widget.borderColor,
+          width: widget.borderWidth,
+          radius: widget.borderRadius,
         ),
         child: Stack(
           children: <Widget>[
